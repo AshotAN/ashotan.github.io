@@ -30,9 +30,9 @@
 			</div>
 		</nav>
 
-		<div id="app">
+		<div id="app" style="width:100%">
 
-			<table class="table table-sm table-dark table-responsive" id="resource-table">
+			<table class="table table-sm table-dark table-responsive" id="resource-table" style="width:100%">
 				<thead>
 					<tr>
 						<th scope="col">Link</th>
@@ -85,7 +85,6 @@
 								console.log(response)
 								if (response.data.status == 'success') {
 									this.resources = response.data.payload;
-									$('#resource-table').DataTable();
 								}
 								this.loading = false;
 							});						
@@ -93,9 +92,14 @@
 				},
 		        created() {
 		            this.init();
-		        }
-			})
+		        },
+				updated: function () {
+					this.$nextTick(function () {
+						$('#resource-table').DataTable();
+					})
+				}
 
+			})
 
 
 		</script>
