@@ -39,7 +39,7 @@
 								{{ resource.name }}
 							</a>
 						</td>
-						<td style="font-size:12px;">
+						<td style="font-size:13px;">
 							{{ resource.description }}
 						</td>
 						<td>
@@ -81,7 +81,9 @@
 							});						
 					},
 					parseTags(tags){
-						return tags.split(',').join(', ');
+						arr = tags.toLowerCase().split(',');
+						narr = arr.map(i => i.charAt(0).toUpperCase() + i.slice(1));
+						return narr.join(', ');
 					}
 				},
 		        created() {
