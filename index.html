@@ -43,7 +43,7 @@
 							{{ resource.description }}
 						</td>
 						<td>
-							{{ tags(resource.tags) }}
+							{{ parseTags(resource.tags) }}
 						</td>
 					</tr>
 				</tbody>
@@ -68,12 +68,6 @@
 					  	resources: []
 					}
 				},
-		        computed: {
-		            tags: function (tags) {
-		            	console.log(tags);
-		            	return tags.split(',').join(', ');
-		            },   
-		        },				
 				methods: {
 					init(){
 						this.loading = true;
@@ -85,6 +79,9 @@
 								}
 								this.loading = false;
 							});						
+					},
+					parseTags(tags){
+						return tags.split(',').join(', ');
 					}
 				},
 		        created() {
