@@ -39,11 +39,11 @@
 								{{ resource.name }}
 							</a>
 						</td>
-						<td>
+						<td style="font-size:12px;">
 							{{ resource.description }}
 						</td>
 						<td>
-							{{ resource.tags.split(',').join(', ') }}
+							{{ tags(resource.tags) }}
 						</td>
 					</tr>
 				</tbody>
@@ -68,6 +68,11 @@
 					  	resources: []
 					}
 				},
+		        computed: {
+		            tags: function (tags) {
+		            	return tags.split(',').join(', ');
+		            },   
+		        },				
 				methods: {
 					init(){
 						this.loading = true;
