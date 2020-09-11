@@ -8,10 +8,11 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 <div id="app">
-  
+  {{ links }}
 </div>
 
 <script>
+
 	var app = new Vue({
 		el: '#app',
 		data: {
@@ -21,17 +22,20 @@
 		methods: {
 			init(){
 				this.loading = true;
-				axios.post('https://cloud.gretsky.host/api/v1/links/technology')
-					.then( (response) => {
-						if (response.data.status == 'success') {
-							console.log(response)
-						}
-						this.loading = false;
-					});
+				
 			}
 		},
         created() {
             this.init();
         }
 	})
+
+	axios.post('https://cloud.gretsky.host/api/v1/links/technology')
+		.then( (response) => {
+			if (response.data.status == 'success') {
+				console.log(response)
+			}
+			this.loading = false;
+		});
+		
 </script>
