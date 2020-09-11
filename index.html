@@ -32,7 +32,7 @@
 
 		<div id="app">
 
-			<table class="table table-sm table-dark">
+			<table class="table table-sm table-dark table-responsive" id="resource-table">
 				<thead>
 					<tr>
 						<th scope="col">Link</th>
@@ -41,16 +41,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="link in links" :key="link.id">
-						<td>{{ link.name }}
+					<tr v-for="resource in resources" :key="resource.id">
+						<td>
+							<a href="{{ resource.link }}" target="_blank">
+								{{ resource.name }}
+							</a>
 						</td>
-						<td>{{ link.description }}</td>
-						<td>{{ link.tags }}</td>
+						<td>
+							{{ resource.description }}
+						</td>
+						<td>
+							{{ resource.tags.split(',').join(', ') }}
+						</td>
 					</tr>
 				</tbody>
 			</table>
-
-			{{ links }}
 
 		</div>
 
@@ -68,7 +73,7 @@
 				data() { 
             		return {
 						loading: false,
-					  	links: []
+					  	resources: []
 					}
 				},
 				methods: {
@@ -78,7 +83,8 @@
 							.then( (response) => {
 								console.log(response)
 								if (response.data.status == 'success') {
-									this.links = response.data.payload;
+									this.resources = response.data.payload;
+									$('#resource-table').DataTable();
 								}
 								this.loading = false;
 							});						
