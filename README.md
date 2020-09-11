@@ -1,1 +1,0 @@
-# ashotan.github.io
