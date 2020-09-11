@@ -70,6 +70,7 @@
 				},
 		        computed: {
 		            tags: function (tags) {
+		            	console.log(tags);
 		            	return tags.split(',').join(', ');
 		            },   
 		        },				
@@ -78,7 +79,7 @@
 						this.loading = true;
 						axios.get('https://cloud.gretsky.host/api/v1/links/technology')
 							.then( (response) => {
-								console.log(response)
+								
 								if (response.data.status == 'success') {
 									this.resources = response.data.payload;
 								}
