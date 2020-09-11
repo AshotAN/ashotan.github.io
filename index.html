@@ -30,7 +30,7 @@
         }
 	})
 
-	axios.post('https://cloud.gretsky.host/api/v1/links/technology')
+	axios.get('https://cloud.gretsky.host/api/v1/links/technology')
 		.then( (response) => {
 			console.log(response)
 			if (response.data.status == 'success') {
