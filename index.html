@@ -74,7 +74,14 @@
 				methods: {
 					init(){
 						this.loading = true;
-						
+						axios.get('https://cloud.gretsky.host/api/v1/links/technology')
+							.then( (response) => {
+								console.log(response)
+								if (response.data.status == 'success') {
+									this.links = response.data.payload;
+								}
+								this.loading = false;
+							});						
 					}
 				},
 		        created() {
@@ -82,14 +89,7 @@
 		        }
 			})
 
-			axios.get('https://cloud.gretsky.host/api/v1/links/technology')
-				.then( (response) => {
-					console.log(response)
-					if (response.data.status == 'success') {
-						this.links = response.data.payload;
-					}
-					this.loading = false;
-				});
+
 
 		</script>
 
