@@ -71,7 +71,7 @@
 				methods: {
 					init(){
 						this.loading = true;
-						axios.get('https://cloud.gretsky.host/api/v1/links/technology')
+						axios.get('https://api.digitalsalvation.org/api/v1/links/technology')
 							.then( (response) => {
 								
 								if (response.data.status == 'success') {
